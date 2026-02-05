@@ -4,7 +4,7 @@
     <joint name="laser_joint" type="fixed">
         <parent link="chassis"/>
         <child link="laser_frame"/>
-        <origin xyz="0.1 0 0.17" rpy="0 0 0"/>
+        <origin xyz="0.1 0 0.175" rpy="0 0 0"/>
     </joint>
 
     <link name="laser_frame">
@@ -26,33 +26,33 @@
         </xacro:inertial_cylinder>
     </link>
 
-    <gazebo reference="laser_frame">
-        <material>
-            <diffuse>1 0 0 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-        </material>
+<gazebo reference="laser_frame">
+    <material>
+        <diffuse>1 0 0 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+    </material>
 
-        <sensor name="laser" type="gpu_lidar">
-            <pose> 0 0 0 0 0 0 </pose>
-            <visualize>true</visualize>
-            <update_rate>10</update_rate>
-            <ray>
-                <scan>
-                    <horizontal>
-                        <samples>360</samples>
-                        <resolution>1</resolution>
-                        <min_angle>-3.14</min_angle>
-                        <max_angle>3.14</max_angle>
-                    </horizontal>
-                </scan>
-                <range>
-                    <min>0.1</min>
-                    <max>12.0</max>
-                </range>
-            </ray>
-            <topic>scan</topic>
-            <gz_frame_id>laser_frame</gz_frame_id>
+    <sensor name="laser" type="gpu_lidar">
+        <pose> 0 0 0 0 0 0 </pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+                <horizontal>
+                    <samples>360</samples>
+                    <resolution>1</resolution>
+                    <min_angle>-3.14</min_angle>
+                    <max_angle>3.14</max_angle>
+                </horizontal>
+            </scan>
+            <range>
+                <min>0.1</min>
+                <max>12.0</max>
+            </range>
+        </ray>
+        <topic>scan</topic>
+        <gz_frame_id>laser_frame</gz_frame_id>
         </sensor>
-    </gazebo>
+</gazebo>
 
 </robot>

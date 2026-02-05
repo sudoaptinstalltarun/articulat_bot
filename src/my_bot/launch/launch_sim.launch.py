@@ -19,8 +19,8 @@ def generate_launch_description():
                 )]), launch_arguments={'use_sim_time': 'true'}.items()
     )
 
-    # 2. Path to our world file
-    world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'obstacles.sdf')
+    # 2. Path to our world file (UPDATED TO CAFE)
+    world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'cafe.world')
 
     # 3. Launch Gazebo Harmony
     gazebo = IncludeLaunchDescription(
@@ -31,17 +31,19 @@ def generate_launch_description():
 
     # 4. Spawn the Robot
     spawn_entity = Node(
-        package='ros_gz_sim',
-        executable='create',
-        arguments=['-topic', 'robot_description',
-                   '-name', 'my_bot',
-                   '-z', '0.1'], # Spawn slightly above ground
-        output='screen'
+    package='ros_gz_sim',
+    executable='create',
+    arguments=['-topic', 'robot_description',
+               '-name', 'my_bot',
+               '-x', '-2.0',  # Move back 2 meters
+               '-y', '-0.5',  # Move right 0.5 meters
+               '-z', '0.1'],
+    output='screen'
     )
 
     # 5. Bridge ROS 2 <-> Gazebo Harmony (USING YAML CONFIG)
     
-    # Path to the YAML config file we just created
+    # Path to the YAML config file
     bridge_params = os.path.join(
         get_package_share_directory(package_name),
         'config',
